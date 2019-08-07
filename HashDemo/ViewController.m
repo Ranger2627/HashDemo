@@ -35,12 +35,13 @@
         //在查找和替换的过程中，通过计算得到储存位置，而为一个个遍历，这样的一个过程是哈希函数
         [countArray replaceObjectAtIndex:(asc-1) withObject:@(count)];
     }
+    //应该根据输入的顺序进行遍历
     NSString *result;
-    for (int i = 0; i < countArray.count; i++) {
-        NSInteger count = [countArray[i] integerValue];
+    for (int i = 0; i < proString.length; i++) {
+        NSInteger count = [countArray[[proString characterAtIndex:i]-1] integerValue];
         if (count == 1) {
             //找到第一个只出现一次的元素，可以结束循环
-            result = [NSString stringWithFormat:@"%c", i + 1];
+            result = [proString substringWithRange:NSMakeRange(i, 1)];
             break;  //不再继续循环
         }
     }
